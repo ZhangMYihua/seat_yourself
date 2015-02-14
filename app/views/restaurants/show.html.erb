@@ -5,3 +5,30 @@
 <p><strong>Description: </strong><%= @restaurant.description %></p>
 <p><strong>Address: </strong><%= @restaurant.address %></p>
 <p><strong>Phone: </strong><%= @restaurant.phone %></p>
+
+	<%= link_to "Make a reservation",  new_restaurant_reservation_path(@restaurant.id) %>
+
+<h3>Reservations</h3>
+
+	  <p>Reservations for <%= @restaurant.name %></p>
+
+	  <% @restaurant.reservations.each do |reserve| %>
+	    <p>
+	    	Party Size:
+	      <%= reserve.party_size %>
+	      <br>
+	      	Booking Time:
+	      <%= reserve.booking %>
+	      <% if reserve.user != nil %>
+	      <br>
+	        <em> By <%= reserve.user.email %></em>
+	      
+	      <% end %>
+		<% if reserve.user == current_user %>
+
+			<%= link_to "Delete", restaurant_reservation_path(@restaurant, reserve), method: :delete, data: {confirm: "Are you sure you want to delete this reservation"} %>
+			<%= link_to "Edit", edit_restaurant_reservation_path(@restaurant, reserve), data: {confirm: "Are you sure you want to edit this reservation"} %>
+		<% end %>
+
+	    </p>
+	  <% end %>

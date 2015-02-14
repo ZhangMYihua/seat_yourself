@@ -1,6 +1,6 @@
 
 def random_hour(from, to)
-  (Date.today + rand(from..to).hour + rand(0..60).minutes).to_datetime
+  (rand(10).days.from_now + rand(from..to).hour + rand(0..60).minutes).to_datetime
 end
 
 puts "\nCreating users"

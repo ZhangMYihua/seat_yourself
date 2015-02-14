@@ -1,0 +1,14 @@
+<%= form_for [@restaurant, @reservation] do |f| %>
+
+ <div class="field">
+    <%= f.label :party_size %><br/>
+    <%= f.number_field :party_size %>
+  </div>
+  <div class="field">
+    <%= f.label :booking %><br/>
+    <%= f.datetime_select(:booking, discard_minute: true) %>
+
+	</div>
+	<div> <%= f.submit %></div>
+<% end %>
+

@@ -1,9 +1,17 @@
+<%= form_tag restaurants_search_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+
 <h1>Restaurants</h1>
 
 <% @restaurants.each do |restaurant| %>
 
 	<p><strong>Picture:</strong><%= restaurant.picture_url %></p>
-	<h2><%= restaurant.name %></h2>
+	<h2><%= link_to restaurant.name, restaurant_path(restaurant.id) %></h2>
 	<p><strong>Capacity:</strong><%= restaurant.capacity %></p>
 	<p><strong>Hours:</strong><%= restaurant.opens_at%> - <%= restaurant.closes_at %></p>
 	
@@ -11,4 +19,7 @@
 	<p><strong>Address</strong><%= restaurant.address %></p>
 	<p><strong>Phone</strong><%= restaurant.phone %></p>
 
+<%= link_to "Book a Reservation!", new_restaurant_reservation_path(restaurant.id) %>
+
 <% end %>
+
